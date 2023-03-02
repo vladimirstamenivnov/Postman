@@ -1,0 +1,403 @@
+{
+	"info": {
+		"_postman_id": "e7df5e88-e944-4548-b3e2-91e008bbed8b",
+		"name": "GITHUB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25967761"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "GET issues",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check if response is an array of issues\", function(){\r",
+									"    const Body = pm.response.json();\r",
+									"    pm.expect(Array.isArray(Body))\r",
+									"\r",
+									"    for (let item of Body){\r",
+									"        pm.expect(typeof(item.title)).equals(\"string\")\r",
+									"        pm.expect(typeof(item.number)).to.be.equal(\"number\")\r",
+									"        pm.expect(item.number, \"Number property\").is.greaterThan(0)\r",
+									"    }\r",
+									"\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/repos/vladimirstamenivnov/Postman/issues",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"vladimirstamenivnov",
+								"Postman",
+								"issues"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_Single_Issue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check status code\", function(){\r",
+									"    pm.response.to.have.status(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Check status\", function(){\r",
+									"    pm.expect(pm.response.status, \"Status property\").equals(\"OK\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Check issue number\", function(){\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.number, \"Issue number property\").to.be.equal(1)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/repos/vladimirstamenivnov/Postman/issues/1",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"vladimirstamenivnov",
+								"Postman",
+								"issues",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://restcountries.com/v3.1/region/europe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://restcountries.com/v3.1/region/europe",
+							"protocol": "https",
+							"host": [
+								"restcountries",
+								"com"
+							],
+							"path": [
+								"v3.1",
+								"region",
+								"europe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://api.github.com/repos/vladimirstamenivnov/Postman",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableUrlEncoding": false,
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.github.com/repos/vladimirstamenivnov/Postman",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"vladimirstamenivnov",
+								"Postman"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_All_Repos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/users/vladimirstamenivnov/repos",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"users",
+								"vladimirstamenivnov",
+								"repos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_Single_Repo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check repo name\", function(){\r",
+									"    const Body = pm.response.json();\r",
+									"\r",
+									"    pm.expect(Body.name, \"Name property\").equals(\"Postman\")\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/repos/vladimirstamenivnov/Postman",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"vladimirstamenivnov",
+								"Postman"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_Commits",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/repos/vladimirstamenivnov/GitLab/commits",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"vladimirstamenivnov",
+								"GitLab",
+								"commits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_Single_Issue_Labels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/repos/vladimirstamenivnov/Postman/issues/4/labels",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"vladimirstamenivnov",
+								"Postman",
+								"issues",
+								"4",
+								"labels"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "Create_issue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check issue property\", function(){\r",
+									"    let body = pm.response.json();\r",
+									"\r",
+									"    pm.expect(body.number, \"Number popeerty\").greaterThan(0);\r",
+									"    pm.expect(body.title, \"Name property\").equal(\"Fourth issue\");\r",
+									"\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Vladimir Stamenov",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Fourth issue\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.github.com/repos/vladimirstamenivnov/Postman/issues",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"vladimirstamenivnov",
+								"Postman",
+								"issues"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_issue_With_Labels",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Vladimir Stamenov",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Issue with labels\",\r\n    \"labels\": [\r\n        \"bug\",\r\n        \"priority:critical\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.github.com/repos/vladimirstamenivnov/Postman/issues",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"repos",
+								"vladimirstamenivnov",
+								"Postman",
+								"issues"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
